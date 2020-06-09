@@ -1,0 +1,7 @@
+<div id="collection-item {{ form.vars.id }}">
+    {% if form.vars.data is not null and form.vars.data.path is not null %}
+        <img src="{{ asset(form.vars.data.path) }}" alt="" width="100" height="100">
+    {% endif %}
+    {{ form_row(form) }}
+    <button type="button" class="btn btn-danger collection-item-delete"><i class="fas fa-trash"></i></button>
+</div>

@@ -1,0 +1,29 @@
+{{ form_start(form) }}
+<div class="card">
+    <div class="card-header">{{ title }}</div>
+    <div class="card-body">
+        {{ form_widget(form._token) }}
+        {{ form_errors(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.company) }}
+        {{ form_row(form.startedAt) }}
+        {{ form_row(form.endedAt) }}
+        {{ form_row(form.description) }}
+        <button type="button" class="btn btn-primary collection-add" data-collection="{{ form.medias.vars.id }}"><i class="fas fa-plus"></i></button>
+        <div
+                id="{{ form.medias.vars.id }}"
+                class="collection"
+                data-index="{{ form.medias|length == 0 ? 0 : form.medias|last.vars.name + 1 }}"
+                data-prototype="{{ include("back_office/media/_form.html.twig", { form: form.medias.vars.prototype })|e("html_attr") }}"
+        >
+            {% for media in form.medias %}
+                {{ include("back_office/media/_form.html.twig", { form: media }) }}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <a href="{{ path("reference_manage") }}" class="btn btn-secondary">Retour</a>
+        <button class="btn btn-primary">{{ action }}</button>
+    </div>
+</div>
+{{ form_end(form, { render_rest: false }) }}

@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h1 class="h4">Liste des compétences</h1>
+                    <a href="{{ path("skill_create") }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                </div>
+                <table class="table table-striped table-hovered mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-center text-uppercase">Id</th>
+                            <th class="text-center text-uppercase">Nom</th>
+                            <th class="text-center text-uppercase">Niveau</th>
+                            <th class="text-center text-uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for skill in skills %}
+                            <tr>
+                                <td class="text-center align-middle">{{ skill.id }}</td>
+                                <td class="text-center align-middle">{{ skill.name }}</td>
+                                <td class="text-center align-middle">{{ skill.level }}/10</td>
+                                <td class="text-center align-middle">
+                                    <a href="{{ path("skill_update", { id: skill.id }) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ path("skill_delete", { id: skill.id }) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center align-middle">Aucune compétence</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
