@@ -6,6 +6,7 @@ git clone https://github.com/TBoileau/portfolio.git
 cd portfolio
 composer install
 npm install
+composer prepare
 ```
 
 ## Configuration
